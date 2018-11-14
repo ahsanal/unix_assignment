@@ -1,0 +1,217 @@
+Viewing Files:-
+
+1. How do you view a text file with the ability to scroll through the pages of the file.
+less filename
+more filename
+
+2. How do you view the first 10 lines of the file?
+head -10 filename
+
+3. How do you view the last 10 lines of the file?
+tail -10 filename
+
+4. How do you see the last few lines of file as new data written to it in realtime.
+tail -f filename
+
+
+Analyzing Text:-
+1. Write the first few lines of output of "ls -la" to the file "data.txt"
+$ls -la > data.txt
+2. Write the last few line of output of "la -la" to an existing file "data.txt" without overwriting the existing content in it.
+$ls -la >> data.txt
+3. From the data.txt file, extract last 3 columns
+$ cut -c 3 filename
+	
+4. Sort the content of the file alphabetically based on first character in the file
+sort filename
+
+5. Sort the content of the file numerically
+sort -n
+
+6. Print number of lines in the file.
+cat filename | wc -l
+
+7. Print number of words in the file.
+cat filename | wc -w
+
+8. Print number of character in the file.
+cat filename | wc -m
+
+
+Pipes and Regular Expressions:-
+1. Check the manual page for "grep" command
+	$ ls | head -3 | tail -1 > myoutput
+
+2. return lines that matches a pattern of your choice.
+grep [REP] filename.txt
+
+3. return lines that does not matches the pattern of your choice.
+grep ^[REP] filename.txt
+
+4. Perform a recursive search on a pattern your choice.
+grep -r [REP] .
+
+5. Perform a case-insensitive search on a pattern of your choice.
+grep -i [REP]  filename.txt
+
+6. Find the lines that matches a pattern of your choice, but display only the first 3 lines out of all the lines mathed.
+grep -m3 [REP] filename.txt
+
+7. Find out how many times a particular word appears in the file.
+grep -o 'word' filename | wc -l
+
+
+8. Use plato_republic.txt file, and display all the line that starts with "Republic".
+grep '^Republic' plato_republic.txt
+
+9. Use Plato_republic.txt file, and display all the lines that ends with "Republic".
+grep '$Republic' plato_republic.txt
+
+10. Use plato_republic.txt file, and display the number of lines that has word "republic".
+grep 'republic' plato_republic.txt | wc -l
+
+11. Use plato_republic.txt file, and display all the lines that begins with either a or A or b or B
+grep -i '^[ab]' plato_republic.txt
+
+12. Use plato_republic.txt file, and display all the lines that does not begins with either a or A or b or B
+grep -i '^[^ab]' plato_republic.txt
+ 
+13. Use plato_republic.txt file, and display all the lines that has "h" or "H" as the second character.
+grep -i '^.h' plato_republic.txt
+
+14. Use plato_republic.txt file, and display all the lines that has internet web address
+grep -i 'www.' plato_republic.txt
+
+15. Sort the listing of a directory "/etc" so that all the directories are listed first.
+ls -l | sort -k1
+
+16. Long List the content of "/etc" directory, but make sure you view it comfortably
+ls -l | less
+ls -l | more
+
+17. Identify all files in your home directory which the group has write permission for.
+find . -group grpname -perm -g+w	
+
+18. Create a listing of every user which owns a file in a given directory as well as how many files and directories they own.
+
+19. Get a count of how many files and directories you have the execute permission for in your home directory.
+find . -perm -g+x | wc -l 
+
+
+---Activities
+
+Let's play with some patterns.
+
+1. A good directory to play with is /etc which is a directory containing config files for the system. As a normal user you may view the files but you can't make any changes so we can't do any harm. Do a listing of that directory to see what's there. Then pick various subsets of files and see if you can create a pattern to select only those files.
+
+2. Do a listing of /etc with only files that contain an extension.
+find . -type f -name '*.*'
+
+3. What about only a 3 letter extension?
+find . -type f -name '*.???'
+
+4. How about files whose name contains an uppercase letter? (hint: [[:upper:]] may be useful here)
+ls -d -- *[[:upper:]]*
+
+5. Can you list files whose name is 4 characters long?
+ls -d /tmp/????
+
+----Activities
+Let's mangle some data. You can use the plato_republic.txt file
+
+1. Now play with each of the programs below. Make sure you use both relative and absolute paths.
+	head
+	tail
+	sort
+	nl
+	wc
+	cut
+	sed
+	uniq
+	tac
+
+Have a look at the man page for each of the programs and try at least 2 of the command line options for them.
+
+
+---Activities
+Let's identify some information. You can use the plato_republic.txt file
+
+1. Now play with some of the examples of grep command with regular expressions.
+
+2. Have a look at the man page for "egrep" and try atleast 2 of the command line options for them.
+
+
+---Activities
+
+Let's play with some content.
+
+1. Start by creating a file and putting some content into it.
+$ vi testfile.txt
+
+2. Save the file and view it in both cat and less
+ESC :wq!
+cat
+less
+3. Go back into the file in vi and enter some more content.
+4. Move around the content using at least 6 different movement commands.
+5. Play about with several of the delete commands, especially the ones that incorporate a movement command. Remember you may undo your changes so you don't have to keep putting new content in.
+
+
+---Permissions
+
+Linux permissions dictate 3 things you may do with a file, read, write and execute. They are referred to in Linux by a single letter each.
+
+r read - you may view the contents of the file.
+w write - you may change the contents of the file.
+x execute - you may execute or run the file if it is a program or script.
+s -> Assignment
+For every file we define 3 sets of people for whom we may specify permissions.
+
+owner - a single person who owns the file. (typically the person who created the file but ownership may be granted to some one else by certain users)
+group - every file belongs to a single group.
+others - everyone else who is not in the group or the owner.
+Three persmissions and three groups of people. That's about all there is to permissions really. Now let's see how we can view and change them.
+
+
+--View Permissions
+
+To view permissions for a file we use the long listing option for the command ls.
+
+	$ ls -l [path]
+
+
+-----Activities
+Let's play with some permissions.
+
+1. First off, take a look at the permissions of your home directory, then have a look at the permissions of various files in there.
+$ cd ~
+$ ls -l
+
+2. Now let's go into your any directory of your choice and change the permissions of some of the files in there. Make sure you use both the shorthand and longhand form for setting permissions and that you also use a variety of absolute and relative paths. Try removing the read permission from a file then reading it. Or removing the write permission and then opening it in vi.
+
+$ chmod 775 /opt/filename.txt
+$ chmod g+w /opt/filename.txt
+
+
+3. Let's play with directories now. Create a directory and put some files into it. Now play about with removing various permissions from yourself on that directory and see what you can and can't do.
+$ mkdir test
+$ chmod u-x test
+
+4. Finally, have an explore around the system and see what the general permissions are for files in other system directories such as /etc and /bin
+ls -lt /etc
+ls -lt /bin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
