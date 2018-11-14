@@ -1,0 +1,253 @@
+
+1. List the contents of a directory and their attributes
+	ls 
+	
+2. Long list the content with file, directory ownership, permissions,sizes, etc...
+	ls -l
+	
+3. Display the size of the file in human readable format
+	ls -s ./fileName
+
+4. Show all files and folders including hidden one
+	ls -a	
+
+5. list directories recursively
+	ls -d
+
+6. Sort the files by size with largest at the top
+	ls -last
+	
+7. Sort the files by last time modified displaying the newest first.
+	ls -lat
+
+8. Diplay the location of a program/command, where it is installed.
+	locate -b program_name/whereis programe_name
+
+9. Which command is used to switch directory from one to another
+	cd
+	
+10. List all the environment variables set for the current shell environment
+	env
+
+11. Did you notice something in the output of "env" command?
+	Yes, All enviroment variables are in capital
+	
+12. Which command is used to print the text or any variables value in the Console/Terminal?
+	echo
+
+13. Print the value of the env variable "PATH" on the console
+	echo $PATH
+	
+14. Is linux a case-sensitive operating system?
+	Yes
+	
+15. Is, "Ls" same as "ls"?
+	No
+
+16. Display your currently logged in user
+	whoami(who is used to check numbers of users)
+
+17. how do you change the currrently logged in user to another user?
+	sudo(sudo -i -> for root user)
+
+18. Which command is used to leave a shell environment that you are currently logged in to?
+	logout/exit
+
+19. How do you reboot the system?
+	sudo reboot
+
+20. How do you shutdown the system?
+	sudo poweroff		 
+
+21. Display all the major running processes in the system
+	top
+	
+22. Understand the output of command used in above question of displaying processes, explain the meaning of each column and what data it displays?
+
+
+23. Display the name of the system kernel
+	uname -r/uname -a(for complete information)
+
+24. display the kernel release number
+	uname -a
+
+25. display the machine type of the current kernel
+	arch/uname
+	
+26. Display the name of the operating system that the kernel is running on
+	uname -or
+
+27. Display all info that uname command can show.
+	uname -a
+
+28. Display the name of directory that you are currently pointing to
+	$PWD
+
+29. change the current directory to another directory that you have in your system.
+	cd
+
+30. Go up one directory
+	cd ..
+	/cd /(root directory), cd dir_name(to move to child directory of root)
+
+31. Return to last directory
+	cd -
+
+32. change the current directory to home(logged in user's) directory
+	cd ~
+
+33. How to check all the command used from the prompt (Command History)
+	history
+
+34. In which file the history of commands are stored in?
+	~/.bash_history
+
+35. How many lines of history does the system keep and from where you can change it?
+	
+
+36. How can you modify bash's history behaviour
+	
+
+37. Display all the commands entered so far, now, try to run a particular command from the history list without typing that command.
+	history And by using up arrow and down arrow we can do that
+
+NOTE:- TAB key is your friend when it comes to command completion and having long file and directory names autocompleted at the bash prompt for you. JUST BE LAZY AND USE TAB KEY FOR AUTO COMPLETION ;-)
+
+
+38. What are the different types of shell and where are they used and how do we use them?
+	Bash Shell->Bash stands for Bourne Again Shell and it is the default shell on many Linux distributions today
+	Tcsh Shell->Tcsh is enhanced C shell, it can be used as a interactive login shell and shell script command processor.
+	Ksh Shell->Ksh stands for Korn shell and was designed and developed by David G. Korn
+	Zsh Shell->Zsh is designed to be interactive and it incorporates many features of other Unix/GNU Linux shells such as bash, tcsh and ksh
+	Fish Shell->Fish in full stands for “friendly interactive shell” and was authored in 2005. It was intended to be fully interactive and user friendly
+	
+39. What is the difference between login shell and non-login shell?
+	1) Login shells
+		A Login shell is started after a successful login, using /bin/login, by reading the /etc/passwd file. Login shell is the first process that executes under our user ID when we log in to a session. The login process tells the shell to behave as a login shell with a convention: passing argument 0, which is normally the name of the shell executable, with a “-” character prepended. For example, for Bash shell it will be -bash.
+
+		When Bash is invoked as a Login shell;
+		→Login process calls /etc/profile
+		→/etc/profile calls the scripts in /etc/profile.d/
+		→Login process calls ~/.bash_profile
+		→~/.bash_profile calls ~/.bashrc
+		→~/.bashrc calls /etc/bashrc
+
+		Login shells include the following.
+		• Shells created by explicitly telling to login.
+		examples: # su - | # su -l | # su --login | # su USERNAME - | # su -l USERNAME | # su --login USERNAME | # sudo -i
+		• Shells created at login, including X login.
+	
+	2) Non login shells
+		A Non login shell is started by a program without a login. In this case, the program just passes the name of the shell executable. For example, for a Bash shell it will be simply bash.
+
+		When bash is invoked as a Non login shell;
+		→Non-login process(shell) calls ~/.bashrc
+		→~/.bashrc calls /etc/bashrc
+		→/etc/bashrc calls the scripts in /etc/profile.d/
+
+		Non login shells include the following.
+		• Shells created using the below command syntax.
+		examples: # su | # su USERNAME
+		• Graphical terminals
+		• Executed scripts
+		• Any other bash instances
+	
+40. How do we start login shell and non-login shell?
+	after a successful login Login shell starts and A Non login shell is started by a program without a login.
+
+41. What happens when you start a login shell (which files are read and used and Why)?
+			When Bash is invoked as a Login shell;
+		→Login process calls /etc/profile
+		→/etc/profile calls the scripts in /etc/profile.d/
+		→Login process calls ~/.bash_profile
+		→~/.bash_profile calls ~/.bashrc
+		→~/.bashrc calls /etc/bashrc
+
+42. What happens when you start a non-login shell (Which files are read and used and Why)?
+		Non login shells include the following.
+		• Shells created using the below command syntax.
+		examples: # su | # su USERNAME
+		• Graphical terminals
+		• Executed scripts
+		• Any other bash instances
+
+39. What are Shell Configuration Files, why do we need it?
+
+40. Explain the Order of file usage from the system/user's home directory when user logs in to the System.
+
+
+41. What are Shell Variables, list major shell variables and what do they represent?
+	
+42. How we see all our env variables?
+	env
+
+43. How we see all env variables in alphabical order?
+	env | sort
+ 
+44. What Format does the env var and its values are stored?
+	key value pair
+
+45. How do you create your own varible?
+	key=value
+
+46. How do you start a new bash shell?
+	vi file_name.sh
+
+47. Difference between Local/Shell variables to Global Variable
+	local variable that is valid in the current (bash) shell only And Global are valid systemwide.
+
+48. Making a variable accessible from other the shell in the system.
+	by using export keyword.
+
+49. Show the real life use case of exporting a variable
+	
+
+50. Convert the above script file into a command, The file should run with "myappp" instead of "myapp.sh"
+	
+
+51. What is Globbing? Explain in depth with examples?
+
+52. List all entries with extension ".sh"
+	ls -d *.sh
+
+53. List all entries with numbers in it.
+	ls -d [0-9]*
+
+54. List all entries that starts with a character and ends with a number
+	ls -d [a-z A-Z]*[0-9]
+
+55. List all entries that name length more than 5 characters
+	ls -d ?????*
+
+56. What is Quoting? and Why do we need it?
+
+57. Write few(minimum 3) unique examples that shows, how a particular problem is solved using Quoting.
+
+58. How do you find a particular files/directories based on a particular search criteria?
+	HINT:- look for commands -> locate, find and whereis
+	locate file*
+
+59. Write major difference between locate, find and whereis?
+
+60. How Globbing is different from locate, find and whereis?
+
+61. Explain the Linux File System.
+
+62. Explain absolute and Relative Paths
+
+63. What are the different ways of creating a File in linux System? Write an example of each and the difference between them.
+	1.Using CAT command(cat > File_Name)
+	2.Using touch command
+	3.Using Echo and printf command(touch fileName)
+	4.Using Different text editors-Vi,emac(vi File_Name)
+
+64. In how many ways we can delete the files from linux system? write an example of each and teh difference between them.
+	rm "File Name"
+
+65. Archiving files using linux command, write a command to archive set of files from linux commands.
+	c – Create an archive from a file(s) or directory(s).
+	example- $ tar cf archive.tar file1 file2 file 3
+
+66. Extract the archived files from the above step.
+	x – Extract an archive.
+	example- $ tar xf ostechnix.tar
